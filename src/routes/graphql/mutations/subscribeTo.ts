@@ -11,10 +11,10 @@ export const subscribeTo = (prisma: PrismaClient) => ({
     userId: { type: new GraphQLNonNull(UUIDType) },
     authorId: { type: new GraphQLNonNull(UUIDType) },
   },
-  resolve: async (_, { userId, authorId }) => {
+  resolve: async (_, { userId, authorId }: { userId: string; authorId: string }) => {
     await prisma.subscribersOnAuthors.create({
       data: { subscriberId: userId, authorId },
     });
-    return "Subscribed";
+    return "Subscribed successfully";
   },
 });
