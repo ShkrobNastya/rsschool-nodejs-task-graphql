@@ -4,7 +4,8 @@ import {
   GraphQLNonNull,
   GraphQLList,
 } from 'graphql';
-import { UUIDType } from './types/uuid.js';
+import { PrismaClient } from '@prisma/client';
+import { UUIDType } from './uuid.js';
 
 
 export const PostType = new GraphQLObjectType({
@@ -16,7 +17,7 @@ export const PostType = new GraphQLObjectType({
   }),
 });
 
-export const postsQuery = (prisma) => ({
+export const postsQuery = (prisma: PrismaClient) => ({
   type: new GraphQLList(new GraphQLNonNull(PostType)),
 
   resolve: async () => {
@@ -24,12 +25,12 @@ export const postsQuery = (prisma) => ({
   },
 });
 
-export const postQuery = (prisma) => ({
+export const postQuery = (prisma: PrismaClient) => ({
   type: PostType,
   args: {
     id: { type: new GraphQLNonNull(UUIDType) },
   },
-  resolve: async (_root, args) => {    
+  resolve: async (_root, args: {id: string}) => {    
     return await prisma.post.findUnique({
       where: { id: args.id },
     });

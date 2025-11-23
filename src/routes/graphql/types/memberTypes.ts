@@ -1,3 +1,4 @@
+import { PrismaClient } from '@prisma/client';
 import {
   GraphQLObjectType,
   GraphQLFloat,
@@ -24,19 +25,19 @@ export const MemberTypeType = new GraphQLObjectType({
   }),
 });
 
-export const memberTypesQuery = (prisma) => ({
+export const memberTypesQuery = (prisma: PrismaClient) => ({
   type: new GraphQLList(new GraphQLNonNull(MemberTypeType)),
   resolve: async () => {
     return prisma.memberType.findMany();
   },
 });
 
-export const memberTypeQuery = (prisma) => ({
+export const memberTypeQuery = (prisma: PrismaClient) => ({
   type: MemberTypeType,
   args: {
     id: { type: new GraphQLNonNull(MemberTypeIdEnum) },
   },
-  resolve: async (_root, args) => {
+  resolve: async (_root, args: {id: string}) => {
     return await prisma.memberType.findUnique({
       where: { id: args.id },
     });

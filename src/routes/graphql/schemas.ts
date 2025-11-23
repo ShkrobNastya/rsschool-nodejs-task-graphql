@@ -6,16 +6,19 @@ import {
 import {
   memberTypesQuery,
   memberTypeQuery,
-} from './memberTypes.js';
+} from './types/memberTypes.js';
 import {
   postQuery,
   postsQuery
-} from './posts.js';
-import { profileQuery, profilesQuery } from './profiles.js';
-import { userQuery, usersQuery } from './users.js';
-import { createUser,createProfile, createPost, changeUser, changeProfile, changePost,deleteUser, deletePost,
-  deleteProfile, subscribeTo, unsubscribeFrom
- } from './mutations.js';
+} from './types/posts.js';
+import { profileQuery, profilesQuery } from './types/profiles.js';
+import { userQuery, usersQuery } from './types/users.js';
+import { createUser, changeUser,deleteUser} from './mutations/users.js';
+import { createProfile, changeProfile, deleteProfile } from './mutations/profiles.js';
+import { createPost, changePost, deletePost } from './mutations/posts.js';
+import { subscribeTo } from './mutations/subscribeTo.js';
+import { unsubscribeFrom } from './mutations/unsubscribeFrom.js';
+import { PrismaClient } from '@prisma/client';
 
 export const gqlResponseSchema = Type.Partial(
   Type.Object({
@@ -36,7 +39,7 @@ export const createGqlResponseSchema = {
   ),
 };
 
-export const createSchema = (prisma) =>
+export const createSchema = (prisma: PrismaClient) =>
   new GraphQLSchema({
     query: new GraphQLObjectType({
       name: 'RootQueryType',
