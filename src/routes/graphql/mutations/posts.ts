@@ -1,11 +1,8 @@
-import {
-  GraphQLNonNull,
-  GraphQLString,
-} from 'graphql';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { PrismaClient } from '@prisma/client';
 import { UUIDType } from '../types/uuid.js';
 import { PostType } from '../types/posts.js';
-import { CreatePostInput, ChangePostInput  } from '../inputs/posts.js';
+import { CreatePostInput, ChangePostInput } from '../inputs/posts.js';
 
 interface CreatePostInterface {
   dto: {
@@ -44,6 +41,6 @@ export const deletePost = (prisma: PrismaClient) => ({
   args: { id: { type: new GraphQLNonNull(UUIDType) } },
   resolve: async (_, { id }: { id: string }) => {
     await prisma.post.delete({ where: { id } });
-    return "Post deleted return";
+    return 'Post deleted return';
   },
 });

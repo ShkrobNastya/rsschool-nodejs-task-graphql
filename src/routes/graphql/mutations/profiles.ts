@@ -1,7 +1,4 @@
-import {
-  GraphQLNonNull,
-  GraphQLString,
-} from 'graphql';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { UUIDType } from '../types/uuid.js';
 import { ProfileType } from '../types/profiles.js';
 import { CreateProfileInput, ChangeProfileInput } from '../inputs/profiles.js';
@@ -46,6 +43,6 @@ export const deleteProfile = (prisma: PrismaClient) => ({
   args: { id: { type: new GraphQLNonNull(UUIDType) } },
   resolve: async (_, { id }: { id: string }) => {
     await prisma.profile.delete({ where: { id } });
-    return "Profile deleted successfully";
+    return 'Profile deleted successfully';
   },
 });

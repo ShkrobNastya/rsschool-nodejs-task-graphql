@@ -1,10 +1,7 @@
-import {
-  GraphQLNonNull,
-  GraphQLString,
-} from 'graphql';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { PrismaClient } from '@prisma/client';
 import { UUIDType } from '../types/uuid.js';
-    
+
 export const unsubscribeFrom = (prisma: PrismaClient) => ({
   type: new GraphQLNonNull(GraphQLString),
   args: {
@@ -15,6 +12,6 @@ export const unsubscribeFrom = (prisma: PrismaClient) => ({
     await prisma.subscribersOnAuthors.delete({
       where: { subscriberId_authorId: { subscriberId: userId, authorId } },
     });
-    return "Unsubscribed successfully";
+    return 'Unsubscribed successfully';
   },
 });

@@ -5,7 +5,6 @@ import { PrismaClient } from '@prisma/client';
 import { createGqlResponseSchema, gqlResponseSchema, createSchema } from './schemas.js';
 import { createLoaders } from './dataloaders.js';
 
-
 export interface GraphQLContext {
   prisma: PrismaClient;
   loaders: ReturnType<typeof createLoaders>;

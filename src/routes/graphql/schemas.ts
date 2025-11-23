@@ -1,19 +1,10 @@
 import { Type } from '@fastify/type-provider-typebox';
-import {
-  GraphQLSchema,
-  GraphQLObjectType,
-} from 'graphql';
-import {
-  memberTypesQuery,
-  memberTypeQuery,
-} from './types/memberTypes.js';
-import {
-  postQuery,
-  postsQuery
-} from './types/posts.js';
+import { GraphQLSchema, GraphQLObjectType } from 'graphql';
+import { memberTypesQuery, memberTypeQuery } from './types/memberTypes.js';
+import { postQuery, postsQuery } from './types/posts.js';
 import { profileQuery, profilesQuery } from './types/profiles.js';
 import { userQuery, usersQuery } from './types/users.js';
-import { createUser, changeUser,deleteUser} from './mutations/users.js';
+import { createUser, changeUser, deleteUser } from './mutations/users.js';
 import { createProfile, changeProfile, deleteProfile } from './mutations/profiles.js';
 import { createPost, changePost, deletePost } from './mutations/posts.js';
 import { subscribeTo } from './mutations/subscribeTo.js';

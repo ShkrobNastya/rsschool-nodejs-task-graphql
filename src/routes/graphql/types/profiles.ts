@@ -19,7 +19,7 @@ export const ProfileType = new GraphQLObjectType({
     memberType: {
       type: new GraphQLNonNull(MemberTypeType),
       resolve: async (profile: Profile, _args, { loaders }: GraphQLContext) => {
-        return loaders.memberTypeById.load(profile.memberTypeId)
+        return loaders.memberTypeById.load(profile.memberTypeId);
       },
     },
   }),
@@ -39,8 +39,7 @@ export const profileQuery = (prisma: PrismaClient) => ({
   args: {
     id: { type: new GraphQLNonNull(UUIDType) },
   },
-  resolve: async (_root, args: {id: string}) => {
-    
+  resolve: async (_root, args: { id: string }) => {
     return await prisma.profile.findUnique({
       where: { id: args.id },
     });

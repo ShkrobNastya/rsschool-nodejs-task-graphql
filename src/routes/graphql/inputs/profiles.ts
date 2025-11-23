@@ -5,7 +5,7 @@ import {
   GraphQLInt,
 } from 'graphql';
 import { UUIDType } from '../types/uuid.js';
-import { MemberTypeIdEnum } from '../types/memberTypes.js'
+import { MemberTypeIdEnum } from '../types/memberTypes.js';
 
 export const CreateProfileInput = new GraphQLInputObjectType({
   name: 'CreateProfileInput',
@@ -18,14 +18,14 @@ export const CreateProfileInput = new GraphQLInputObjectType({
     },
   },
 });
- 
+
 export const ChangeProfileInput = new GraphQLInputObjectType({
   name: 'ChangeProfileInput',
   fields: {
     isMale: { type: GraphQLBoolean },
     yearOfBirth: { type: GraphQLInt },
     memberTypeId: {
-      type: MemberTypeIdEnum
+      type: MemberTypeIdEnum,
     },
   },
 });

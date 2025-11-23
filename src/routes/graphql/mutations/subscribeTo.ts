@@ -1,7 +1,4 @@
-import {
-  GraphQLNonNull,
-  GraphQLString,
-} from 'graphql';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { PrismaClient } from '@prisma/client';
 import { UUIDType } from '../types/uuid.js';
 
@@ -15,6 +12,6 @@ export const subscribeTo = (prisma: PrismaClient) => ({
     await prisma.subscribersOnAuthors.create({
       data: { subscriberId: userId, authorId },
     });
-    return "Subscribed successfully";
+    return 'Subscribed successfully';
   },
 });

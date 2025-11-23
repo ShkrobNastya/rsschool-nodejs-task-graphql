@@ -1,11 +1,8 @@
-import {
-  GraphQLNonNull,
-  GraphQLString,
-} from 'graphql';
+import { GraphQLNonNull, GraphQLString } from 'graphql';
 import { PrismaClient } from '@prisma/client';
 import { UUIDType } from '../types/uuid.js';
 import { UserType } from '../types/users.js';
-import {CreateUserInput, ChangeUserInput } from '../inputs/users.js';
+import { CreateUserInput, ChangeUserInput } from '../inputs/users.js';
 
 interface CreateUserInterface {
   dto: {
@@ -43,6 +40,6 @@ export const deleteUser = (prisma: PrismaClient) => ({
   args: { id: { type: new GraphQLNonNull(UUIDType) } },
   resolve: async (_, { id }: { id: string }) => {
     await prisma.user.delete({ where: { id } });
-    return "User deleted";
+    return 'User deleted';
   },
 });

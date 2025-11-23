@@ -37,7 +37,7 @@ export const memberTypeQuery = (prisma: PrismaClient) => ({
   args: {
     id: { type: new GraphQLNonNull(MemberTypeIdEnum) },
   },
-  resolve: async (_root, args: {id: string}) => {
+  resolve: async (_root, args: { id: string }) => {
     return await prisma.memberType.findUnique({
       where: { id: args.id },
     });
